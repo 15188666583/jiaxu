@@ -6,21 +6,39 @@
     <script type="text/javascript" src="vue-min.js"></script>
     <style type="text/css">
         .current{text-decoration: underline}
-    
-    
+        .is_nav{background-color: antiquewhite}
+        .color{color: red}
     </style>
 </head>
 <body>
     <div id="app">
-      <span v-bind:class="name">当前导航</span>
+     
+      <span v-bind:class="name">当前导航1</span>
        <span v-bind:class="{current:isCurrent}">当前导航2</span>
+       <p>实例2 对象方式绑定</p>
+        <span class="side" v-bind:class="objClass">当前导航3</span>
+        <p>实例3 数组方式绑定</p>
+        <span class="side" v-bind:class="[currentClass,colorClass]">当前导航3</span>
+        <p>实例4 组件方式</p>
+        <my-comp class="color"></my-comp>
     </div>
     <script type="text/javascript">
+        Vue.component("my-comp",{
+            template:'<p class="first"></p>'
+        })
     var app=new Vue({
         el:"#app",
         data:{
            name:"current",
-            isCurrent:false
+            isCurrent:false,
+            objClass:{
+                "current":true,
+                "is_nav":true,
+                "color":true
+            },
+            currentClass:"current",
+            colorClass:"color"
+            
         }
     })
         
