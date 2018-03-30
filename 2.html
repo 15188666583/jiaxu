@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue入门1.4</title>
+    <script type="text/javascript" src="vue-min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p v-once>{{msg}}</p>
+        <h2 v-html="msg"></h2>
+        <p v-bind:class="msg">这是一个content类</p><!--加入bind就可以把msg当成属性名-->
+        <p ：class="msg">这个同样绑定属性</p>
+        <p> {{msg.toLowerCase()}}</p>
+        <a :href='url'>baidu</a>
+        <a v-on:click="dosomething">点击事件</a><!--绑定事件-->
+        <a @click="dosomething"></a><!--是上面的缩略式-->
+        <form v-on:submit.prevent="onsubmit">修饰符</form><!--半角句号是修饰符，指明特殊后缀-->
+        <!--过滤器{{name|myfilter}}<div v-bind:id="name|myfilter"></div>-->
+        <!--上面是过滤器的两种方法-->
+        <h2>{{ msg | mrfilter | toLowercase}}</h2>
+        <h2>{{ msg | mrfilter | toLowercase | toUpperCase}}</h2>
+    </div>
+    <script type="text/javascript">
+       var app = new Vue({
+           el:'#app',
+           date:{
+               msg:'MYAPP',
+               url:'http://www.baidu.com'
+           },
+           //翻转字符
+           filters:{
+               myfilter(value){
+                   return value.split('').reverse().join('');
+               },
+               toLowercase(value){
+               return value.toLowerCase();
+           },
+           touppercase(value){
+               return value.toUpperCase();
+           }
+           }
+       }) 
+      
+    </script>
+</body>
+</html>

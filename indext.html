@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue-min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p> {{msg}}</p>
+          <p v-once> {{msg}}</p>
+          <h2 v-html="msg"></h2>
+          <p v-bind:class="msg">这是一个content类</p>
+    <p :class="msg">这个同样绑定属性</p>
+    <p>{{msg.toLowerCase()}}</p>
+    <a :href='url'>baidu</a>
+   <a v-on:click="dosomething">点击事件</a>
+    <a @click="dosomething"></a>
+    <form v-on:submit.prevent="onsubmit">修饰符</form>
+    <!--过滤器{{name  |  myfilter}} <div v-bind:id="name|myfilter"></div>
+    -->
+    <h2>{{msg | myfilter}}</h2>
+    <h2>{{msg | myfilter | tolowercase}}</h2>
+    <h2>{{msg | myfilter | tolowercase | touppercase}}</h2>
+<p> a = {{a}}</p>
+   <p> b = {{b}}</p>
+    </div>
+    <script type="text/javascript">
+   var app= new Vue({
+        el:'#app',
+        data:{
+            msg:'MYAPP',
+            url:'http://www.baidu.com',
+            a:1
+        },
+       filters:{
+           myfilter(value){
+               return value.split('').reverse().join('');
+           },
+           toLowerCase(value){
+               return value.toLowerCase();
+           },
+           toUpperCase(value){
+               return  value.toUpperCase();
+           }
+       },
+       computed:{
+           b:function(){
+               return this.a + 1
+           }
+       }
+    })
+   
+   //app.msg = "你好vue！"
+   
+    app.a=8;
+    
+    </script>
+</body>
+</html>
