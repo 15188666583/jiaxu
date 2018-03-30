@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue入门1</title>
+    <script type="text/javascript" src="vue-min.js"></script>
+    <style type="text/css">
+        .current{text-decoration: underline}
+    
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+      <span v-bind:class="name">当前导航</span>
+       <span v-bind:class="{current:isCurrent}">当前导航2</span>
+    </div>
+    <script type="text/javascript">
+    var app=new Vue({
+        el:"#app",
+        data:{
+           name:"current",
+            isCurrent:false
+        }
+    })
+        
+    </script>
+</body>
+</html>

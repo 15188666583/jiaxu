@@ -5,44 +5,60 @@
     <title>vue入门1</title>
     <script type="text/javascript" src="vue-min.js"></script>
 </head>
+
 <body>
     <div id="app">
-<!--      watch属性用于监视vue实例上数据的变动，并且相应的改变其他变量的值-->
-   <input type="text" v-model="firstName">
-   <input type="text" v-model="lastName">
-   <p>我的名字叫{{fullName}}</p>
-   <!--      watch属性用于监视vue实例上数据的变动，并且相应的改变其他变量的值,new表示当前数据，old表示前一步数据（或者默认数据）-->
-   <p>实例2</p>
-   <input type="text" v-model="number">
-   <p>结果{{result}}</p>
+        <!--      watch属性用于监视vue实例上数据的变动，并且相应的改变其他变量的值-->
+        <input type="text" v-model="firstName">
+        <input type="text" v-model="lastName">
+        <p>我的名字叫{{fullName}}</p>
+        <!--      watch属性用于监视vue实例上数据的变动，并且相应的改变其他变量的值,new表示当前数据，old表示前一步数据（或者默认数据）-->
+        <p>实例2</p>
+        <input type="text" v-model="number">
+        <p>结果{{result}}</p>
+        <p>实例3</p>
+        <input type="text" v-mode="fruitsCount">
+        <input type="text" v-mode="fruitsName">
+        <p>{{message}}</p>
     </div>
     <script type="text/javascript">
-    var app=new Vue({
-        el:"#app",
-        data:{
-          firstName:"zhang",
-            lastName:"san",
-            fullName:"zhangsan",
-            number:1,
-            result:1
-        },
-        watch:{
-            firstName:function(curVal,oldVal){
-                this.fullName = curVal +""+this.lastName
+        var app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "zhang",
+                lastName: "san",
+                fullName: "zhangsan",
+                number: 1,
+                result: 1,
+                fruits:{
+                    count: 1,
+                    name: "香蕉"
+                },
+                message: "1个香蕉"
             },
-            lastName:function(a,b){
-                
-                
-                this.fullName = this.firstName+""+a;
-            },
-            number:function(a,b){
-                
-                this.result = a*1+b*1; 
-                
+            watch: {
+                firstName: function(curVal, oldVal) {
+                    this.fullName = curVal + "" + this.lastName
+                },
+                lastName: function(a, b) {
+
+
+                    this.fullName = this.firstName + "" + a;
+                },
+                number: function(a, b) {
+
+                    this.result = a * 1 + b * 1;
+
+                },
+                fruits: {
+                    handler(obj) {
+                        this.message = obj.count + "个" + obj.name
+
+                    },
+                    deep: true
+                }
             }
-        }
-    })
-        
+        })
     </script>
 </body>
 </html>
